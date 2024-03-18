@@ -8,29 +8,26 @@ vcs = "git"
 style = "semver"
 
 [tool.poetry]
-name = "pythontemplate"
+name = "scplan"
 version = "0.0.0"  # Do not change, let poetry-dynamic-versioning handle it.
-homepage = "https://github.com/GIT_USERNAME/GIT_REPONAME"
-repository = "https://github.com/GIT_USERNAME/GIT_REPONAME"
+homepage = "https://github.com/michaelGuo1204/scPLAN"
+repository = "https://github.com/michaelGuo1204/scPLAN"
 license = "Apache-2.0"
 description = ""
-authors = ["YOUR_NAME_HERE"]
+authors = ["michaelGuo"]
 readme = "README.rst"
-packages = [{include = "pythontemplate"}]
-include = ["pythontemplate/*.so", "pythontemplate/*.pyd"]  # Compiled extensions
+packages = [{include = "scplan"}]
+include = ["scplan/*.so", "scplan/*.pyd"]  # Compiled extensions
 
 [tool.poetry.build]
 generate-setup-file = false
 
 [tool.poetry.scripts]
-pythontemplate = "pythontemplate.cli.main:run_app"
 
 [tool.poetry.dependencies]
 # Be as loose as possible if writing a library.
 python = "^3.8"
 typing-extensions = "^4.10.0"
-rich = ">=10.11.0"
-cyclopts = "^2.4.2"
 
 [tool.poetry.group.docs.dependencies]
 sphinx = "~7.1.2"
@@ -175,7 +172,7 @@ skip = 'poetry.lock,'
 
 [tool.creosote]
 venvs=[".venv"]
-paths=["pythontemplate"]
+paths=["scplan"]
 deps-file="pyproject.toml"
 sections=["tool.poetry.dependencies"]
 exclude-deps =[

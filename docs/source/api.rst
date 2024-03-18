@@ -1,7 +1,7 @@
 API
 ===
 
-.. automodule:: pythontemplate
+.. automodule:: scplan
    :members:
    :undoc-members:
    :show-inheritance:

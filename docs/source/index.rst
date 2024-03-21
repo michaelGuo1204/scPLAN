@@ -10,8 +10,8 @@ Welcome to scplan's documentation!
 
    self
    Installation
-   Overview
    api
+   tut
 
 
 

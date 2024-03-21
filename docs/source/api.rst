@@ -1,7 +1,9 @@
-API
-===
+APIs in scPLAN
+===================
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
-.. automodule:: scplan
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   ./apis/preprocess.rst
+   ./apis/model.rst
+   ./apis/PLAN.rst

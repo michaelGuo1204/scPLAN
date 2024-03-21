@@ -1,0 +1,34 @@
+class Param:
+    def __init__(self):
+        self.datapath = "/data/qrguo/Project/data/ATAC/"
+        self.target = "PBMCRNA.h5ad"
+        self.ref = {}
+        self.epochs = 200
+        self.pretrain_epoch = 100
+        self.prot_start = 1
+        self.cluster_start = 0
+        self.batch_size = 64
+        self.lr = 0.001
+        self.weight_decay = 1e-5
+        self.latent_dim = 32
+        self.enc_dim = [128,64]
+        self.dec_dim = [64,128]
+        self.moco_queue = 128
+        self.moco_m = 0.99
+        self.proto_m = 0.99
+        self.loss_weight = 0.5
+        self.recon_weight = 0.1
+        self.debatch_weight = 0.1
+        self.momentum_schedule = [0.95, 0.8]
+        self.partial_rate = 0.5
+        self.pretrain = True
+        self.debatch = True
+        self.novel_cell = False
+        self.device = [1]
+        self.class_mask = None
+        self.ablation = False
+        self.num_class = None
+        self.num_features = None
+        self.ambiguous_cluster = None
+        self.resolution = 1
+        self.novel_epoch = None

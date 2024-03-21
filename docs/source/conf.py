@@ -14,6 +14,7 @@ from pathlib import Path
 import git
 
 sys.path.insert(0, str(Path("../..").absolute()))
+sys.path.insert(0,"/home/bili/Lernen/scPLAN/")
 
 
 from scplan import __version__
@@ -42,8 +43,8 @@ extensions = [
     "sphinx_rtd_theme",
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
-    "sphinx.ext.linkcode",
     "sphinx_copybutton",
+    "nbsphinx",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -145,7 +146,7 @@ html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
 
 html_title = project
-html_logo = "../../assets/logo_200w.png"
+html_logo = "./_static/scPLAN.png"
 html_favicon = None
 
 html_theme_options = {
@@ -177,3 +178,4 @@ html_context = {
 html_css_files = [
     "custom.css",
 ]
+autoapi_dirs = ["../../scplan"]

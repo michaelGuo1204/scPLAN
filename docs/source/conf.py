@@ -14,7 +14,7 @@ from pathlib import Path
 import git
 
 sys.path.insert(0, str(Path("../..").absolute()))
-sys.path.insert(0,"/home/bili/Lernen/scPLAN/")
+sys.path.insert(0, "/home/bili/Lernen/scPLAN/")
 
 
 from scplan import __version__

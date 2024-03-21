@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.optim import Adam
 
-from scplan.Critic import ZINBLoss, muDec, dispDec
+from scplan.Critic import ZINBLoss, dispDec, muDec
 
 
 class ZINBEncoder(pl.LightningModule):
@@ -12,7 +12,7 @@ class ZINBEncoder(pl.LightningModule):
     ZINB AutoEncoder for PLAN
     """
 
-    def __init__(self, latent_dim, num_class, encoder_dim, decoder_dim, data_dim, pretrain=None,novel_cell=False):
+    def __init__(self, latent_dim, num_class, encoder_dim, decoder_dim, data_dim, pretrain=None, novel_cell=False):
         """
         Initializing the encoder
 
@@ -24,8 +24,14 @@ class ZINBEncoder(pl.LightningModule):
         :param pretrain: Whether to use pretrained plan
         """
         super().__init__()
-        self.AE = ZINBAutoEncoder(data_dim=data_dim, num_class=num_class, encoder_dim=encoder_dim,
-                                  latent_dim=latent_dim, decoder_dim=decoder_dim,novel_cell=novel_cell)
+        self.AE = ZINBAutoEncoder(
+            data_dim=data_dim,
+            num_class=num_class,
+            encoder_dim=encoder_dim,
+            latent_dim=latent_dim,
+            decoder_dim=decoder_dim,
+            novel_cell=novel_cell,
+        )
         if pretrain != None:
             self.AE.load_state_dict(pretrain.AE.state_dict())
         self.zloss = ZINBLoss()
@@ -46,6 +52,7 @@ class ZINBEncoder(pl.LightningModule):
 
     def clsforward(self, x):
         return self.AE.clsforward(x)
+
     def auxclsforward(self, x):
         return self.AE.auxclsforward(x)
 
@@ -61,12 +68,9 @@ class ZINBAutoEncoder(nn.Module):
         self.encoder = buildNetwork([data_dim] + encoder_dim + [latent_dim], activation="relu")
         self.decoder = buildNetwork([latent_dim] + decoder_dim)
         self.classifier = nn.Linear(latent_dim, num_class)
-        self.mu_decoder = nn.Sequential(
-            nn.Linear(decoder_dim[-1], data_dim), muDec())
-        self.disp_decoder = nn.Sequential(
-            nn.Linear(decoder_dim[-1], data_dim), dispDec())
-        self.pi_decoder = nn.Sequential(
-            nn.Linear(decoder_dim[-1], data_dim), nn.Sigmoid())
+        self.mu_decoder = nn.Sequential(nn.Linear(decoder_dim[-1], data_dim), muDec())
+        self.disp_decoder = nn.Sequential(nn.Linear(decoder_dim[-1], data_dim), dispDec())
+        self.pi_decoder = nn.Sequential(nn.Linear(decoder_dim[-1], data_dim), nn.Sigmoid())
         self.novel_cell = novel_cell
 
     def forward(self, x):
@@ -88,6 +92,7 @@ class ZINBAutoEncoder(nn.Module):
 
     def clsforward(self, z):
         return self.classifier(z)
+
 
 def buildNetwork(layers, activation="relu", layer_norm=False):
     net = []

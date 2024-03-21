@@ -8,7 +8,8 @@ class ClsLoss(torch.nn.Module):
     """
     Loss function for classifier training
     """
-    def __init__(self, candidate, candidate_momentum=0.99,novel_cell=False):
+
+    def __init__(self, candidate, candidate_momentum=0.99, novel_cell=False):
         """
         Loss function initialization
 
@@ -20,6 +21,7 @@ class ClsLoss(torch.nn.Module):
         self.candidate_momentum = candidate_momentum
         self.label_mask = None
         self.novel_cell = novel_cell
+
     def momentum_schedule(self, epoch, param):
         """
         Momentum schedule for updating candidate set of labels
@@ -29,7 +31,7 @@ class ClsLoss(torch.nn.Module):
         """
         start = param.momentum_schedule[0]
         end = param.momentum_schedule[1]
-        self.candidate_momentum = 1. * epoch / param.epochs[-1] * (end - start) + start
+        self.candidate_momentum = 1.0 * epoch / param.epochs[-1] * (end - start) + start
 
     def forward(self, prediction, index):
         """
@@ -41,11 +43,15 @@ class ClsLoss(torch.nn.Module):
         """
         logtrans_pred = F.log_softmax(prediction, dim=1)
         masked_pred = logtrans_pred * self.candidate[index, :]
-        average_loss = - ((masked_pred).sum(dim=1)).mean()
+        average_loss = -((masked_pred).sum(dim=1)).mean()
         return average_loss
+
     def updateLabelClusters(self, label_clusters):
         dim = len(label_clusters)
-        self.label_mask = torch.where(label_clusters.repeat(dim, 1) == label_clusters.repeat(dim, 1).T, 1, 0).to(self.candidate)
+        self.label_mask = torch.where(label_clusters.repeat(dim, 1) == label_clusters.repeat(dim, 1).T, 1, 0).to(
+            self.candidate
+        )
+
     def proto_forward(self, prediction):
         """
         Loss computation based on prototype assignment
@@ -55,7 +61,7 @@ class ClsLoss(torch.nn.Module):
         """
         logtrans_pred = F.log_softmax(prediction, dim=1)
         masked_pred = logtrans_pred * self.label_mask / self.label_mask.sum(dim=1)
-        average_loss = - ((masked_pred).sum(dim=1)).mean()
+        average_loss = -((masked_pred).sum(dim=1)).mean()
         return average_loss
 
     def confidence_update(self, proto_assign, index, candidate_label):
@@ -68,10 +74,11 @@ class ClsLoss(torch.nn.Module):
         """
         with torch.no_grad():
             _, prot_pred = (proto_assign * candidate_label).max(dim=1)
-            #pseudo_label = F.one_hot(prot_pred, candidate_label.shape[1]).float().cuda().detach()
-            pseudo_label = self.label_mask[prot_pred] #/ self.label_mask[prot_pred].sum(dim=1,keepdims=True)
-            self.candidate[index, :] = self.candidate_momentum * self.candidate[index, :] \
-                                              + (1 - self.candidate_momentum) * pseudo_label
+            # pseudo_label = F.one_hot(prot_pred, candidate_label.shape[1]).float().cuda().detach()
+            pseudo_label = self.label_mask[prot_pred]  # / self.label_mask[prot_pred].sum(dim=1,keepdims=True)
+            self.candidate[index, :] = (
+                self.candidate_momentum * self.candidate[index, :] + (1 - self.candidate_momentum) * pseudo_label
+            )
         return None
 
 
@@ -80,6 +87,7 @@ class SupConLoss(nn.Module):
     """
     Supervised/Unsupervised Contrastive loss
     """
+
     def __init__(self, temperature=0.07, base_temperature=0.07):
         """
         Loss function initialization
@@ -101,28 +109,19 @@ class SupConLoss(nn.Module):
         :param batch_size: batch size of current batch
         :return:
         """
-        device = (torch.device('cuda')
-                  if features.is_cuda
-                  else torch.device('cpu'))
+        device = torch.device("cuda") if features.is_cuda else torch.device("cpu")
 
         if mask is not None:
             # SupCon loss (Partial Label Mode)
             mask = mask.float().detach().to(device)
             # compute logits
-            anchor_dot_contrast = torch.div(
-                torch.matmul(features[:batch_size], features.T),
-                self.temperature)
+            anchor_dot_contrast = torch.div(torch.matmul(features[:batch_size], features.T), self.temperature)
             # for numerical stability
             logits_max, _ = torch.max(anchor_dot_contrast, dim=1, keepdim=True)
             logits = anchor_dot_contrast - logits_max.detach()
 
             # mask-out self-contrast cases
-            logits_mask = torch.scatter(
-                torch.ones_like(mask),
-                1,
-                torch.arange(batch_size).view(-1, 1).to(device),
-                0
-            )
+            logits_mask = torch.scatter(torch.ones_like(mask), 1, torch.arange(batch_size).view(-1, 1).to(device), 0)
             mask = mask * logits_mask
 
             # compute log_prob
@@ -133,7 +132,7 @@ class SupConLoss(nn.Module):
             mean_log_prob_pos = (mask * log_prob).sum(1) / mask.sum(1)
 
             # loss
-            loss = - (self.temperature / self.base_temperature) * mean_log_prob_pos
+            loss = -(self.temperature / self.base_temperature) * mean_log_prob_pos
             loss = loss.mean()
         else:
             # MoCo loss (unsupervised)
@@ -141,11 +140,11 @@ class SupConLoss(nn.Module):
             # Einstein sum is more intuitive
             # positive logits: Nx1
             q = features[:batch_size]
-            k = features[batch_size:batch_size * 2]
-            queue = features[batch_size * 2:]
-            l_pos = torch.einsum('nc,nc->n', [q, k]).unsqueeze(-1)
+            k = features[batch_size : batch_size * 2]
+            queue = features[batch_size * 2 :]
+            l_pos = torch.einsum("nc,nc->n", [q, k]).unsqueeze(-1)
             # negative logits: NxK
-            l_neg = torch.einsum('nc,kc->nk', [q, queue])
+            l_neg = torch.einsum("nc,kc->nk", [q, queue])
             # logits: Nx(1+K)
             logits = torch.cat([l_pos, l_neg], dim=1)
 
@@ -158,27 +157,31 @@ class SupConLoss(nn.Module):
 
         return loss
 
+
 class NeigborLoss(nn.Module):
     def __init__(self):
         super().__init__()
         self.tmp = 0.1
 
-    def forward(self, latent,cls_out,proto_assign):
+    def forward(self, latent, cls_out, proto_assign):
         proto_assign = proto_assign.clone().detach()
-        feat_mat = torch.mm(latent,latent.t()) / self.tmp
-        #mask = torch.eye(feat_mat.size(0), feat_mat.size(0)).to(latent).bool()
-        #feat_mat = torch.masked_fill(feat_mat, mask, -1/self.tmp)
+        feat_mat = torch.mm(latent, latent.t()) / self.tmp
+        # mask = torch.eye(feat_mat.size(0), feat_mat.size(0)).to(latent).bool()
+        # feat_mat = torch.masked_fill(feat_mat, mask, -1/self.tmp)
         local_nb_dist, local_nb_idx = torch.max(feat_mat, 1)
         local_nb_cls = cls_out[local_nb_idx, :]
         local_nb_proto = proto_assign[local_nb_idx, :]
-        local_loss = -torch.sum(proto_assign * F.log_softmax(local_nb_cls,dim=1))
-        local_loss += -torch.sum(local_nb_proto * F.log_softmax(cls_out,dim=1))
+        local_loss = -torch.sum(proto_assign * F.log_softmax(local_nb_cls, dim=1))
+        local_loss += -torch.sum(local_nb_proto * F.log_softmax(cls_out, dim=1))
         local_loss /= 2 * len(latent)
         return local_loss
+
+
 class OTLoss(nn.Module):
     def __init__(self):
         super().__init__()
-    def forward(self,x):
+
+    def forward(self, x):
         pass
 
 
@@ -186,8 +189,10 @@ class ZINBLoss(pl.LightningModule):
     """
     Reconstruction loss in ZINB encoder
     """
+
     def __init__(self):
         super().__init__()
+
     def forward(self, x, mean, disp, pi, scale_factor=1.0, ridge_lambda=0.0):
         """
         Reconstruction loss computation
@@ -224,11 +229,14 @@ class ZINBLoss(pl.LightningModule):
 class muDec(nn.Module):
     def __init__(self):
         super(muDec, self).__init__()
+
     def forward(self, x):
         return torch.clamp(torch.exp(x), min=1e-5, max=1e6)
+
 
 class dispDec(nn.Module):
     def __init__(self):
         super(dispDec, self).__init__()
+
     def forward(self, x):
         return torch.clamp(F.softplus(x), min=1e-4, max=1e4)

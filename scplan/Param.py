@@ -11,8 +11,8 @@ class Param:
         self.lr = 0.001
         self.weight_decay = 1e-5
         self.latent_dim = 32
-        self.enc_dim = [128,64]
-        self.dec_dim = [64,128]
+        self.enc_dim = [128, 64]
+        self.dec_dim = [64, 128]
         self.moco_queue = 128
         self.moco_m = 0.99
         self.proto_m = 0.99

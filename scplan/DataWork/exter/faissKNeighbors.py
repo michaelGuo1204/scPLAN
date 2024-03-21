@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Created on Thu Apr 14 12:57:39 2022
 
@@ -7,6 +6,7 @@ Created on Thu Apr 14 12:57:39 2022
 
 import faiss
 import numpy as np
+
 
 class FaissKNeighbors:
     def __init__(self, k=50):
@@ -23,16 +23,16 @@ class FaissKNeighbors:
         distances, indices = self.index.search(X.astype(np.float32), k=self.k)
         votes = self.y[indices]
         predictions = np.array([np.unique(x)[np.argmax(np.unique(x, return_counts=True)[1])] for x in votes])
-        
+
         return predictions
-    
+
     def predict_proba(self, X):
         distances, indices = self.index.search(X.astype(np.float32), k=self.k)
         votes = self.y[indices]
-        probs = np.array([np.unique(x, return_counts=True)[1]/self.k for x in votes])
-        
+        probs = np.array([np.unique(x, return_counts=True)[1] / self.k for x in votes])
+
         return probs
-        
+
     def kneighbors(self, X, return_distance=True):
         distances, indices = self.index.search(X.astype(np.float32), k=self.k)
         if return_distance:

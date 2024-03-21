@@ -17,4 +17,3 @@ This module contains the functions to preprocess the data.
 .. autoclass:: scplan.DataWork.Atlas.AtlasDataset
     :members:
     :private-members:
-

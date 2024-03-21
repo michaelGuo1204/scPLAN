@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Publish docs
 on: [push]
 permissions:
   contents: write
@@ -14,4 +14,4 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: docs/docbuild/html/ # The folder the action should deploy.
+          folder: docs/build/html/ # The folder the action should deploy.

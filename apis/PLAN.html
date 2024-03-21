@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLAN Module &mdash; scplan</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorial" href="../tut.html" />
+    <link rel="prev" title="PLAN Network" href="model.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            scplan
+              <img src="../_static/scPLAN.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to scplan's documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">APIs in scPLAN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="preprocess.html">Data preprocessing Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">PLAN Network</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PLAN Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tut.html">Tutorial</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scplan</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">APIs in scPLAN</a></li>
+      <li class="breadcrumb-item active">PLAN Module</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/michaelGuo1204/scPLAN/blob/main/docs/source/apis/PLAN.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="plan-module">
+<h1>PLAN Module<a class="headerlink" href="#plan-module" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">scplan.PLL.</span></span><span class="sig-name descname"><span class="pre">PartialLabelLearning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning" title="Permalink to this definition"></a></dt>
+<dd><p>Initializing the worker by plan.Param</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>param</strong> -- User specific params</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.Setup">
+<span class="sig-name descname"><span class="pre">Setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pretrain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simu_param</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.Setup" title="Permalink to this definition"></a></dt>
+<dd><p>Setup the worker by encoder type, whether to use pretrained plan, simulation params, logger and dataset.
+If dataset is not provided, simulation is used, else real data is used.
+Pretrain would be performed if pretrain is True. A pl.trainer instance is used for pretraining with early stopping
+and optimal learning rate finding.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>encoder</strong> -- Encoder type, e.g. BasicEncoder or ZINBEncoder</p></li>
+<li><p><strong>pretrain</strong> -- Whether to pretrain encoder</p></li>
+<li><p><strong>simu_param</strong> -- If simulation is used, specify the simulation params</p></li>
+<li><p><strong>logger</strong> -- pl.logger instances for logging</p></li>
+<li><p><strong>dataset</strong> -- If real data is used, specify the dataset</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stage</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.setup" title="Permalink to this definition"></a></dt>
+<dd><p>Initialization procedure of pl.LightningModule, here we only perform
+hyperparameter logging before training stage</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stage</strong> -- pl.LightningModule stage, e.g. fit or predict</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.configure_optimizers">
+<span class="sig-name descname"><span class="pre">configure_optimizers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.configure_optimizers" title="Permalink to this definition"></a></dt>
+<dd><p>Configure optimizer for PLAN</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.training_step">
+<span class="sig-name descname"><span class="pre">training_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.training_step" title="Permalink to this definition"></a></dt>
+<dd><p>Main training step of PLAN</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> -- batch data</p></li>
+<li><p><strong>batch_index</strong> -- batch index</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Overall loss</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.on_train_epoch_start">
+<span class="sig-name descname"><span class="pre">on_train_epoch_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.on_train_epoch_start" title="Permalink to this definition"></a></dt>
+<dd><p>At the beginning of each training epoch, reset training metric</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.train_dataloader">
+<span class="sig-name descname"><span class="pre">train_dataloader</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.train_dataloader" title="Permalink to this definition"></a></dt>
+<dd><p>Dataloader overload for novel cell perception</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return dataloader<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dataloader</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.on_train_epoch_end">
+<span class="sig-name descname"><span class="pre">on_train_epoch_end</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.on_train_epoch_end" title="Permalink to this definition"></a></dt>
+<dd><p>At the end of each training epoch, log training metric</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.predict_step">
+<span class="sig-name descname"><span class="pre">predict_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.predict_step" title="Permalink to this definition"></a></dt>
+<dd><p>Prediction step of PLAN, store raw data, cell type labels, encoder latents and classifier predictions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> -- batch data</p></li>
+<li><p><strong>batch_idx</strong> -- batch index</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.getPredictions">
+<span class="sig-name descname"><span class="pre">getPredictions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pred_outputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.getPredictions" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.saveModel">
+<span class="sig-name descname"><span class="pre">saveModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.saveModel" title="Permalink to this definition"></a></dt>
+<dd><p>Save plan to path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> -- string path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.loadModel">
+<span class="sig-name descname"><span class="pre">loadModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.loadModel" title="Permalink to this definition"></a></dt>
+<dd><p>Load plan from path and set to eval mode</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> -- Model path</p></li>
+<li><p><strong>encoder</strong> -- Model encoder type, shall be consist with the plan to be loaded</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.evaAcc">
+<span class="sig-name descname"><span class="pre">evaAcc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.evaAcc" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.PLL.PartialLabelLearning.validateNovelCell">
+<span class="sig-name descname"><span class="pre">validateNovelCell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.PLL.PartialLabelLearning.validateNovelCell" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="model.html" class="btn btn-neutral float-left" title="PLAN Network" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tut.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, michaelGuo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

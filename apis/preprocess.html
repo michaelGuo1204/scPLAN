@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data preprocessing Module &mdash; scplan</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PLAN Network" href="model.html" />
+    <link rel="prev" title="APIs in scPLAN" href="../api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            scplan
+              <img src="../_static/scPLAN.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to scplan's documentation!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">APIs in scPLAN</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data preprocessing Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scrnadataset"><code class="docutils literal notranslate"><span class="pre">scRNADataset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#atlasdataset"><code class="docutils literal notranslate"><span class="pre">AtlasDataset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">PLAN Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PLAN.html">PLAN Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tut.html">Tutorial</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">scplan</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">APIs in scPLAN</a></li>
+      <li class="breadcrumb-item active">Data preprocessing Module</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/michaelGuo1204/scPLAN/blob/main/docs/source/apis/preprocess.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-preprocessing-module">
+<h1>Data preprocessing Module<a class="headerlink" href="#data-preprocessing-module" title="Permalink to this heading"></a></h1>
+<p>This module contains the functions to preprocess the data.</p>
+<section id="scrnadataset">
+<h2><code class="docutils literal notranslate"><span class="pre">scRNADataset</span></code><a class="headerlink" href="#scrnadataset" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">scplan.DataWork.scRNA.</span></span><span class="sig-name descname"><span class="pre">scRNADataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> -- Specify data path and file names with  &quot;data_path&quot; and &quot;target or simulation params &quot;</p>
+</dd>
+</dl>
+<p>:exception Raise exception if neither data path/file name nor simulation params is not provided</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">partial_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the dataloader and generate partial label</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>partial_rate</strong> -- p to generate false labels among ambiguous pairs</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> -- Raise exception if data file is not found</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>partial_Y: partial label for training
+cell_dic: Cell type for each label</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.readData">
+<span class="sig-name descname"><span class="pre">readData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.readData" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.generateSimulation">
+<span class="sig-name descname"><span class="pre">generateSimulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.generateSimulation" title="Permalink to this definition"></a></dt>
+<dd><p>Generate simulated RNASeq counts data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Andata object for data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.load" title="Permalink to this definition"></a></dt>
+<dd><p>Generate dataloader</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>batch_size</strong> -- </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dataloader</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.reloadloader">
+<span class="sig-name descname"><span class="pre">reloadloader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.reloadloader" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.computePrototype">
+<span class="sig-name descname"><span class="pre">computePrototype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.computePrototype" title="Permalink to this definition"></a></dt>
+<dd><p>Compute prototype for each cell type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> -- Anndata object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>prototype for each cell type</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.HC_Tree_buildup">
+<span class="sig-name descname"><span class="pre">HC_Tree_buildup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.HC_Tree_buildup" title="Permalink to this definition"></a></dt>
+<dd><p>Build up a hierarchical clustering tree based on the mean prototype of each cell type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> -- Input anndata object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A clustering tree with nodes on each level</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.generateCandidateLabels">
+<span class="sig-name descname"><span class="pre">generateCandidateLabels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.generateCandidateLabels" title="Permalink to this definition"></a></dt>
+<dd><p>Base function for partial label generation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>train_label</strong> -- Sample label</p></li>
+<li><p><strong>partial_rate</strong> -- Probability to generate a false positive within candidate set</p></li>
+<li><p><strong>label_ref</strong> -- Cell type corresponding to each label, just for</p></li>
+<li><p><strong>resolution</strong> -- Resolution for tree node merge</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>partial label and None(For compatibility with Atlas dataset)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.updateParams">
+<span class="sig-name descname"><span class="pre">updateParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.updateParams" title="Permalink to this definition"></a></dt>
+<dd><p>Update params based on input data, numclass, numfeatures and ambiguous cluster would be updated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>param</strong> -- Param() objects</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>updated param</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.getPartialLabel">
+<span class="sig-name descname"><span class="pre">getPartialLabel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.getPartialLabel" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.getCellDic">
+<span class="sig-name descname"><span class="pre">getCellDic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.getCellDic" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.getRawDataMeta">
+<span class="sig-name descname"><span class="pre">getRawDataMeta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.getRawDataMeta" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.getLabelCluster">
+<span class="sig-name descname"><span class="pre">getLabelCluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regenerate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.getLabelCluster" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.scRNA.scRNADataset.getDataIndex">
+<span class="sig-name descname"><span class="pre">getDataIndex</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.scRNA.scRNADataset.getDataIndex" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="atlasdataset">
+<h2><code class="docutils literal notranslate"><span class="pre">AtlasDataset</span></code><a class="headerlink" href="#atlasdataset" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">scplan.DataWork.Atlas.</span></span><span class="sig-name descname"><span class="pre">AtlasDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> -- Specify data path and file names with  &quot;data_path&quot; and &quot;target/ref&quot;</p>
+</dd>
+</dl>
+<p>:exception Raise exception if data path/file name is not provided</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Initialize the dataloader and generate partial label</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>partial_rate</strong> -- p to generate false labels among ambiguous pairs</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Expection</strong> -- Raise exception if data file is not found</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>partial_Y: partial label for training
+cell_dic: Cell type for each label</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.readData">
+<span class="sig-name descname"><span class="pre">readData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.readData" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.load" title="Permalink to this definition"></a></dt>
+<dd><p>Generate dataloader</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>batch_size</strong> -- </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dataloader</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.scHPLTreeBuild">
+<span class="sig-name descname"><span class="pre">scHPLTreeBuild</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.scHPLTreeBuild" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.generateRefLabels">
+<span class="sig-name descname"><span class="pre">generateRefLabels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_ref</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.generateRefLabels" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.generateCandidateLabels">
+<span class="sig-name descname"><span class="pre">generateCandidateLabels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brach_dic</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.generateCandidateLabels" title="Permalink to this definition"></a></dt>
+<dd><p>Base function for partial label generation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>train_label</strong> -- Sample label</p></li>
+<li><p><strong>partial_rate</strong> -- Probability to generate a false positive within candidate set</p></li>
+<li><p><strong>label_ref</strong> -- Cell type corresponding to each label, just for</p></li>
+<li><p><strong>resolution</strong> -- Resolution for tree node merge</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>partial label and None(For compatibility with Atlas dataset)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.updateParams">
+<span class="sig-name descname"><span class="pre">updateParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.updateParams" title="Permalink to this definition"></a></dt>
+<dd><p>Update params based on input data, numclass, numfeatures and ambiguous cluster would be updated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>param</strong> -- Param() objects</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>updated param</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.computeLabelCluster">
+<span class="sig-name descname"><span class="pre">computeLabelCluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">candidate_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_dic</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.computeLabelCluster" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.getPartialLabel">
+<span class="sig-name descname"><span class="pre">getPartialLabel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.getPartialLabel" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.getCellDic">
+<span class="sig-name descname"><span class="pre">getCellDic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.getCellDic" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.getRawDataMeta">
+<span class="sig-name descname"><span class="pre">getRawDataMeta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.getRawDataMeta" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.getLabelCluster">
+<span class="sig-name descname"><span class="pre">getLabelCluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regenerate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.getLabelCluster" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scplan.DataWork.Atlas.AtlasDataset.getDataIndex">
+<span class="sig-name descname"><span class="pre">getDataIndex</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scplan.DataWork.Atlas.AtlasDataset.getDataIndex" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api.html" class="btn btn-neutral float-left" title="APIs in scPLAN" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="model.html" class="btn btn-neutral float-right" title="PLAN Network" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, michaelGuo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

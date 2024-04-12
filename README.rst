@@ -16,6 +16,8 @@ scPLAN
 
 .. image:: ./_static/fig1.png
     :scale: 50 %
+
+
 Motivation
 ========
 
@@ -33,7 +35,10 @@ scplan requires Python ``>=3.8`` and can be installed via:
    python -m pip install git+https://github.com/michaelGuo1204/scPLAN.git
 
 
+Tutorial
+===========
 
+Docs and tutorials could be found in https://michaelguo1204.github.io/scPLAN/
 
 
 

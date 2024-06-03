@@ -27,7 +27,7 @@ generate-setup-file = false
 [tool.poetry.dependencies]
 # Be as loose as possible if writing a library.
 python = "^3.8"
-typing-extensions = "^4.10.0"
+typing-extensions = "^4.12.1"
 
 [tool.poetry.group.docs.dependencies]
 sphinx = "~7.1.2"
